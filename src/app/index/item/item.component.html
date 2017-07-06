@@ -1,0 +1,34 @@
+<!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+<div class="mdui-card-media img-preview">
+  <img class="mdui-img-rounded mdui-valign mdui-center"
+       src="{{imgUrl}}"/>
+
+
+</div>
+
+<!-- 卡片的标题和副标题 -->
+<div class="mdui-card-primary">
+  <div class="mdui-card-primary-title"
+       style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{title}}
+  </div>
+  <!--<div class="mdui-card-primary-subtitle">Subtitle</div>-->
+</div>
+
+<!-- 卡片的内容 -->
+<div class="mdui-card-content"
+     style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+ {{description}}
+</div>
+
+
+<!--分割线-->
+<div class="mdui-divider-dark"></div>
+
+
+<!-- 卡片的按钮 -->
+<div class="mdui-card-actions ">
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left" (click)="collect()">复制大屏</button>
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right">预览大屏</button>
+  <!--<button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">&#xe5cf;</i></button>-->
+</div>
+<ng-content select="header"></ng-content>
