@@ -19,6 +19,7 @@ import {appRoutes} from "./app.routes";
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
+
   ],
   providers: [
     HttpTokenInterceptor

@@ -7,7 +7,9 @@ import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, Simp
 })
 export class ItemComponent implements OnInit,OnChanges,DoCheck{
   ngDoCheck(): void {
-    console.log(this);
+    // console.log(this);
+    // console.log(event)
+    // console.log();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -18,10 +20,12 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
   description:string="";
   @Input() imgUrl:string="";
   @Output() onCollect1=new EventEmitter<any>();
+  @Input() index:number;
 
   constructor() { }
 
   ngOnInit() {
+    console.log(this.index);
   }
 
   @Input('description')
@@ -34,7 +38,7 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
   }
   collect(){
     console.log("看看那");
-    this.onCollect1.emit("哈哈哈");
+    this.onCollect1.emit();
   }
 
 
