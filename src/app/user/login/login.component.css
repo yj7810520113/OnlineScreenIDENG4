@@ -1,0 +1,11 @@
+#login-error {
+  background: #FEEEEB;
+  border: 1px solid #F15532;
+  color: #F15533;
+  margin-bottom: 16px;
+  line-height: 24px;
+  box-sizing: border-box;
+  font-family: PingFangSC-Light;
+  font-size: 14px;
+  padding: 5px 12px 5px 32px;
+}

@@ -1,5 +1,14 @@
-import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
+import {MdProgressBarModule} from '@angular/material';
+import { NgProgressService} from 'ngx-progressbar'
+
+
+
+
+
+
+
 
 @Component({
   selector: 'app-all-visual-screen',
@@ -9,7 +18,12 @@ import {FormControl} from "@angular/forms";
   //   input:new ViewChild('testSelect')
   // }
 })
-export class AllVisualScreenComponent implements OnInit {
+export class AllVisualScreenComponent implements OnInit,OnDestroy{
+  ngOnDestroy(): void {
+    this.NgProgressService.done();
+    // throw new Error('Method not implemented.');
+  }
+
   @ViewChild('testSelect') testSelect:ElementRef;
 
   public  datas=[
@@ -37,9 +51,15 @@ export class AllVisualScreenComponent implements OnInit {
   ]
 
 
-  constructor(private renderer:Renderer2) { }
+  constructor(private renderer:Renderer2,
+              private NgProgressService:NgProgressService
+  ) { }
 
   ngOnInit() {
+    this.NgProgressService.start()
+    setTimeout(()=>{
+      this.NgProgressService.done();
+    },3000)
   }
 
   collect(event:any){
