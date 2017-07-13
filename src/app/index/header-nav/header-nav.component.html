@@ -1,63 +1,244 @@
-<!--appbar-->
-<header class="mdui-appbar mdui-appbar-fixed mdui-shadow-6">
-  <div class="mdui-toolbar mdui-color-indigo">
-    <a href="javascript:;" class="mdui-typo-title">
-      <b>HESC</b>harts
-    </a>
-    <div class="mdui-toolbar-spacer"></div>
-    <a href="javascript:;" class="mdui-ripple mdui-ripple-white">
-      <i class="mdui-icon material-icons">&#xe8b6;</i>
-      <label>其他案例集</label>
-    </a>
+<!--<div class="hold-transition skin-blue sidebar-mini">-->
+  <div class="wrapper">
 
-    <a  class="mdui-ripple mdui-ripple-white" (click)="getsomthing()">
-      <i class="mdui-icon material-icons">&#xe5d4;</i>
-    </a>
-  </div>
-</header>
+    <!-- Logo -->
 
 
-<!--导航栏-->
-<!-- 默认抽屉栏在左侧 -->
-<div class="mdui-drawer mdui-shadow-10 ">
-  <ul class="mdui-list">
-    <div routerLinkActive="nav-select-active">
-      <a routerLink="my">
-        <li class="mdui-list-item mdui-ripple">
-          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe168;</i>
-          <div class="mdui-list-item-content">我的案例集</div>
-        </li>
-      </a>
+    <header class="main-header">
+      <a routerLink="index" class="navbar-brand">HESCharts</a>
+
+      <nav class="navbar navbar-static-top">
+        <div class="navbar-custom-menu">
+
+          <!--header右侧-->
+          <ul class="nav navbar-nav navbar-right">
+            <!--<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../html/login.html" onclick="javascript:localStorage.removeItem('token')">登出</a></li>
+            <!--<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>-->
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="../html/heacEchartCases.html" target="_blank">其他案例集</a></li>
+            <!--<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>-->
+          </ul>
+
+          <!--&lt;!&ndash;测试保存数据按钮&ndash;&gt;-->
+          <!--<ul class="nav navbar-nav navbar-right">-->
+          <!--<li><a href="javascript:saveScreenConfig()" target="_blank">保存</a></li>-->
+          <!--&lt;!&ndash;<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>&ndash;&gt;-->
+          <!--</ul>-->
+
+
+          <!--<ul id="preview" class="nav navbar-nav navbar-right">-->
+          <!--<li><a href="./hescEchartForPreView.html" target="_blank">预览</a></li>-->
+          <!--&lt;!&ndash;<li><a href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a></li>&ndash;&gt;-->
+          <!--</ul>-->
+        </div>
+      </nav>
+    </header>
+
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      <!-- sidebar: style can be found in sidebar.less -->
+      <section class="sidebar">
+        <!-- /.search form -->
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+          <li class="header">控制面板</li>
+          <li class="treeview">
+            <!--<a href="#">-->
+            <!--<i class="fa fa-dashboard"></i> <span>Dashboard</span>-->
+            <!--<span class="pull-right-container">-->
+            <!--<i class="fa fa-angle-left pull-right"></i>-->
+            <!--</span>-->
+            <!--</a>-->
+             <!--<li><a routerLink="my"><i class="glyphicon glyphicon-th-list"></i>我的案例</a></li>-->
+             <!--<li><a routerLink="share"><i class="glyphicon glyphicon-th"></i>推荐案例</a></li>-->
+            <a routerLink="my" routerLinkActive="nav-active" (click)="showMyText()"><i class="glyphicon glyphicon-th-list"></i>我的案例</a>
+             <a routerLink="share" routerLinkActive="nav-active" (click)="showShareText()"><i class="glyphicon glyphicon-th"></i>推荐案例</a>
+          </li>
+        </ul>
+      </section>
+      <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <div class="top-alert"><strong class="fl">公告：</strong>目前 HESCharts 仅测试谷歌 Chrome 浏览器版本 50 以上、Microsoft
+        Edge。其他浏览器尚未测试。问题反馈：<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=494713188&site=qq&menu=yes"><img
+          border="0" src="http://wpa.qq.com/pa?p=2:494713188:52" alt=" 反馈问题" title="反馈问题"/></a></div>
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          案例集
+          <small>{{headerText}}</small>
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i>控制面板</a></li>
+          <li class="active">{{headerText}}</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row" id="screenStart">
+
+            <router-outlet></router-outlet>
+
+            <!--<div class="screen" >-->
+            <!--<div class="image-wrap" >-->
+            <!--<img src="//img.alicdn.com/tfs/TB1VpagQFXXXXcJXVXXXXXXXXXX-1920-1080.jpg?spm=1494837372820" alt="screenshot" class="screen_image" data-reactid=".0.0.1.0.$0/=11=2$0.1.1.0.0.$41251.0.0">-->
+            <!--<div class="mask" data-reactid=".0.0.1.0.$0/=11=2$0.1.1.0.0.$41251.0.1">-->
+            <!--<a href="/admin/screen/41251" target="_blank" class="edit-wrap">-->
+            <!--<button class="edit">编辑</button>-->
+            <!--</a>-->
+            <!--<div class="delete" >-->
+            <!--<i class="iconfont icon-shanchu"></i>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="screen-bottom-wrap">-->
+            <!--<div class="color-B2C1D5 screen_bottom">-->
+            <!--<i class="iconfont icon-bianji fl"></i>-->
+            <!--&lt;!&ndash;<p>test</p>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="screen-actions-box">-->
+            <!--<div class="screenActions">-->
+            <!--<ul class="clearfix">-->
+            <!--<li>-->
+            <!--<i class="iconfont icon-fuzhi">-->
+            <!--</i>-->
+            <!--<span>复制</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--<i class="iconfont icon-yulan">-->
+            <!--</i>-->
+            <!--<span>预览</span>-->
+            <!--</li>-->
+            <!--<li>-->
+            <!--</li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--<noscript></noscript>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<noscript></noscript>-->
+            <!--</div>-->
+
+
+            <!--<div class="small-box bg-aqua">-->
+            <!--<div class="inner">-->
+            <!--<h3>150</h3>-->
+
+            <!--<p>New Orders</p>-->
+            <!--</div>-->
+            <!--<div class="icon">-->
+            <!--<i class="ion ion-bag"></i>-->
+            <!--</div>-->
+        </div>
+        <!-- ./col -->
+
+        <!-- /.row (main row) -->
+
+      </section>
+      <!-- /.content -->
     </div>
-  </ul>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 0.5.0-RC
+      </div>
+      <strong>Copyright &copy; 2017 <a href="#">HESC Studio</a>.</strong> All rights
+      reserved.
+    </footer>
 
-  <ul class="mdui-list">
-    <div routerLinkActive=" nav-select-active">
-      <a routerLink="index/share">
-        <li class="mdui-list-item mdui-ripple">
-          <i class="mdui-list-item-icon mdui-icon material-icons">&#xe168;</i>
-          <div class="mdui-list-item-content">推荐案例集</div>
-        </li>
-      </a>
+
+    <!--添加新数据案例的模态框-->
+    <div class="modal fade" id="addScreenModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" style="height: 700px;width:500px;z-index: 1001;">
+
+        <div class="modal-content">
+          <div class="modal-header" style="display: block">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <p>新建可视化案例</p>
+          </div>
+          <div class="modal-body">
+            <form role="form">
+              <div class="form-group">
+                <label>可视化案例名称<b style="color: red">*</b></label>
+                <input id="ScreenModalScreenNameInput" type="text" class="form-control" check-type="required"
+                       required-message="可视化案例名称不能为空！"/>
+                <label>案例描述</label>
+                <textarea id="ScreenModalScreenDescriptionTextarea" type="text" class="form-control"
+                          rows="7"></textarea>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="addScreenModalButton">添加案例</button>
+          </div>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+  </div>
+
+
+  <!--案例删除确认的的模态框-->
+  <div class="modal fade" id="deleteScreenModal" tabindex="-1" role="dialog"
+       aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="height: 700px;width:500px;z-index: 1001;">
+
+      <div class="modal-content">
+        <div class="modal-header" style="display: block">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <p>删除可视化案例</p>
+        </div>
+        <div class="modal-body">
+          <form role="form">
+            <div class="form-group">
+              <label>删除后无法恢复，确认删除？</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-dismiss="modal" id="cancelDeleteScreenModalButton">取消</button>
+          <button type="button" class="btn btn-primary" id="deleteScreenModalButton">删除</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal -->
+<!--</div>-->
+
+<!--复制新数据案例的模态框-->
+<div class="modal fade" id="copyScreenModal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="height: 700px;width:500px;z-index: 1001;">
+
+    <div class="modal-content">
+      <div class="modal-header" style="display: block">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <p>复制可视化案例</p>
+      </div>
+      <div class="modal-body">
+        <form role="form">
+          <div class="form-group">
+            <label>可视化案例名称：</label>
+            <input id="copyScreenModalScreenNameInput" type="text " class="form-control" check-type="required"
+                   required-message="可视化案例名称不能为空！"/>
+            <label>案例描述：</label>
+            <textarea id="copyScreenModalScreenDescriptionTextarea" class="form-control" rows="7"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="copyaddScreenModalButton">复制案例</button>
+      </div>
     </div>
-  </ul>
-</div>
-
-
-
-
-<div class="mdui-container-fluid" style="background-color:#ecf0f5">
-  <div class="top-alert mdui-valign mdui-shadow-1">
-    <strong class="fl">公告：</strong>目前 HESCharts 仅测试谷歌 Chrome 浏览器版本 50 以上、Microsoft Edge。其他浏览器尚未测试。问题反馈：
-    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin=494713188&amp;site=qq&amp;menu=yes"><img
-      style=" vertical-align: middle;" src="http://wpa.qq.com/pa?p=2:494713188:52" alt=" 反馈问题"
-      title="反馈问题"></a>
-  </div>
-
-  <div style="padding-top: 16px;">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal -->
 
 
 

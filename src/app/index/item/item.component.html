@@ -9,7 +9,7 @@
 <!-- 卡片的标题和副标题 -->
 <div class="mdui-card-primary">
   <div class="mdui-card-primary-title"
-       style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{title}}
+       style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{screenName}}
   </div>
   <!--<div class="mdui-card-primary-subtitle">Subtitle</div>-->
 </div>
@@ -17,7 +17,7 @@
 <!-- 卡片的内容 -->
 <div class="mdui-card-content"
      style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
- {{description}}
+ {{screenName+'大屏的描述'}}
 </div>
 
 
@@ -27,8 +27,8 @@
 
 <!-- 卡片的按钮 -->
 <div class="mdui-card-actions ">
-  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left" (click)="collect()">复制大屏</button>
-  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right">预览大屏</button>
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left" (click)="copyScreen()">复制大屏</button>
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right" (click)="previewScreen()">预览大屏</button>
   <!--<button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">&#xe5cf;</i></button>-->
 </div>
-<ng-content select="header"></ng-content>
+<!--<ng-content select="header"></ng-content>-->

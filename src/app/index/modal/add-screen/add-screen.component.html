@@ -1,0 +1,32 @@
+<h1 md-dialog-title>添加大屏</h1>
+<div md-dialog-content >
+
+  <form class="example-form">
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="大屏名称" [formControl]="screenName">
+      <md-error *ngIf="screenName.hasError('required')">
+        请输入大屏名称
+      </md-error>
+    </md-input-container>
+
+
+    <md-input-container class="example-full-width" >
+      <textarea mdInput placeholder="大屏描述" rows="5" [formControl]="screenDescription" ></textarea>
+      <md-error *ngIf="screenDescription.hasError('required')">
+        请输入大屏描述
+      </md-error>
+    </md-input-container>
+  </form>
+
+
+</div>
+<!--<div class="form-group has-feedback">-->
+  <!--<input name="userName" [(ngModel)]="user.userName" #username="ngModel" type="text" class="form-control" placeholder="用户名">-->
+  <!--<span class="glyphicon glyphicon-user form-control-feedback"></span>-->
+<!--</div>-->
+<div md-dialog-actions>
+  <button md-button md-dialog-close="Option 1">Option 1</button>
+  <button md-button md-dialog-close="Option 2">Option 2</button>
+</div>
+
+

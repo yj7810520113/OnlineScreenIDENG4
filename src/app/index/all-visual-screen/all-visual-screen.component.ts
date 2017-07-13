@@ -1,7 +1,12 @@
 import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {MdProgressBarModule} from '@angular/material';
+import {MdDialog, MdProgressBarModule} from '@angular/material';
 import { NgProgressService} from 'ngx-progressbar'
+import {IndexServiceService} from "../service/index-service.service";
+import {IndexModel} from "../model/index-model";
+import {AddScreenComponent} from "../modal/add-screen/add-screen.component";
+import {ModalModule} from "ngx-modal";
+
 
 
 
@@ -19,47 +24,29 @@ import { NgProgressService} from 'ngx-progressbar'
   // }
 })
 export class AllVisualScreenComponent implements OnInit,OnDestroy{
+  @ViewChild('myModal') myModal:any;
+  private datas:any;
+  private addScreenModal=AddScreenComponent;
+
   ngOnDestroy(): void {
     this.NgProgressService.done();
     // throw new Error('Method not implemented.');
   }
 
+
   @ViewChild('testSelect') testSelect:ElementRef;
-
-  public  datas=[
-
-    {
-      title:'爽肤水',
-      description:'爽肤水描述',
-      imgUrl:'http://192.168.1.14:8180/hescharts_server/img/98-1499151055356.png'
-    },
-    {
-      title:'爽肤水',
-      description:'爽肤水描述',
-      imgUrl:'http://192.168.1.14:8180/hescharts_server/img/98-1499151055356.png'
-    },
-    {
-      title:'爽肤水',
-      description:'爽肤水描述',
-      imgUrl:'http://192.168.1.14:8180/hescharts_server/img/98-1499151055356.png'
-    },
-    {
-      title:'爽肤水',
-      description:'爽肤水描述',
-      imgUrl:'http://192.168.1.14:8180/hescharts_server/img/98-1499151055356.png'
-    }
-  ]
 
 
   constructor(private renderer:Renderer2,
-              private NgProgressService:NgProgressService
+              private NgProgressService:NgProgressService,
+              private indexService:IndexServiceService,
+              public dialog: MdDialog
   ) { }
 
   ngOnInit() {
-    this.NgProgressService.start()
-    setTimeout(()=>{
-      this.NgProgressService.done();
-    },3000)
+    this.indexService.getScreenConfig('/ajax/home/all/share').subscribe((x)=>{
+      this.datas=x;
+    })
   }
 
   collect(event:any){
@@ -69,6 +56,14 @@ export class AllVisualScreenComponent implements OnInit,OnDestroy{
 
     //如果用了ngmodel双向绑定话，则不能用value赋值
     this.renderer.setProperty(this.testSelect.nativeElement,'value','testProperty');
+
+  }
+  showModal(id:number,event:any){
+    // this.myModal.open();
+    console.log(id+event);
+    let dialogRef = this.dialog.open(AddScreenComponent,{
+      width: '600px',
+    });
 
   }
 

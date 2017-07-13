@@ -27,10 +27,10 @@ export const indexRoutes = [
     redirectTo: 'my',
     pathMatch: 'full'
   },
-  {
-    path:'/index/my',
-    component:MyVisualScreenComponent,
-  },
+  // {
+  //   path:'/index/my',
+  //   component:MyVisualScreenComponent,
+  // },
   {
     path:'my',
     component:MyVisualScreenComponent,

@@ -5,12 +5,19 @@ import {RouterModule} from "@angular/router";
 import {indexRoutes} from "./index.routes";
 import { AllVisualScreenComponent } from './all-visual-screen/all-visual-screen.component';
 import { ItemComponent } from './item/item.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MdDialogModule, MdButtonModule, MdInputModule} from '@angular/material';
+
+
 import { MyBeautifulBackgroundDirective } from './my-beautiful-background.directive';
 import { MyNgIfDirective } from './my-ng-if.directive';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 
 import { NgProgressModule,NgProgressService} from 'ngx-progressbar';
+import {IndexServiceService} from "./service/index-service.service";
+import { AddScreenComponent } from './modal/add-screen/add-screen.component';
+import {ModalModule} from "ngx-modal";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 
@@ -18,8 +25,13 @@ import { NgProgressModule,NgProgressService} from 'ngx-progressbar';
   imports: [
     CommonModule,
     RouterModule.forChild(indexRoutes),
+    ReactiveFormsModule,//使用formcontrol必须使用reactiveFOrmsModule
     FormsModule,  //导入FormModule
     NgProgressModule,
+    MdDialogModule,
+    MdButtonModule,
+    ModalModule,
+    MdInputModule,
 
   ],
   declarations: [
@@ -28,9 +40,16 @@ import { NgProgressModule,NgProgressService} from 'ngx-progressbar';
     ItemComponent,
     MyBeautifulBackgroundDirective,
     MyNgIfDirective,
-    HeaderNavComponent,
+    AddScreenComponent,
+    // HeaderNavComponent,
   ],
-  bootstrap: [HeaderNavComponent]
+  providers:[
+    IndexServiceService,
+  ],
+  entryComponents:[
+    AddScreenComponent
+  ],
+  bootstrap: []
 
 })
 export class IndexModule { }

@@ -1,55 +1,76 @@
-<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-3 mdui-col-lg-3 mdui-col-xl-3 mdui-p-b-1">
+<!--&lt;!&ndash;每个案例的卡片开始的标签&ndash;&gt;-->
+<!--<div class="col-lg-3 col-xs-6">-->
 
 
-  <div class="mdui-card mdui-hoverable mdui-shadow-3">
-    <!--&lt;!&ndash; 卡片头部，包含头像、标题、副标题 &ndash;&gt;-->
-    <!--<div class="mdui-card-header">-->
-    <!--<img class="mdui-card-header-avatar" src="http://192.168.71.179:8080/webapiproxy/img/98-1496278187287.png"/>-->
-    <!--<div class="mdui-card-header-title">Title</div>-->
+  <!--<div class="screen">-->
+    <!--<div class="new-wrap">-->
+      <!--<a  class="screen_new_link">-->
+        <!--<i class="iconfont icon-xinjian">-->
+        <!--</i>-->
+        <!--<span>新建可视化</span>-->
+      <!--</a>-->
+      <!--&lt;!&ndash;<span>&ndash;&gt;-->
+      <!--&lt;!&ndash;<noscript></noscript>&ndash;&gt;-->
+      <!--&lt;!&ndash;</span>&ndash;&gt;-->
     <!--</div>-->
-
-    <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
-    <div class="mdui-card-media img-preview">
-      <img class="mdui-img-rounded mdui-valign mdui-center"
-           src="http://mmcode.top:8080/hescharts_server/img/98-1499044956057.png"/>
+  <!--</div>-->
+<!--</div>-->
 
 
-    </div>
-    <ng-content></ng-content>
-    <!-- 卡片的标题和副标题 -->
-    <div class="mdui-card-primary">
-      <div class="mdui-card-primary-title"
-           style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">爽肤水大屏爽肤水大屏爽肤水大屏爽肤水大屏爽肤水大屏
-      </div>
-      <!--<div class="mdui-card-primary-subtitle">Subtitle</div>-->
-    </div>
+<!--<div class="col-lg-3 col-xs-6">-->
+  <!--<div class="screen">-->
+    <!--<div class="image-wrap"><img src="http://192.168.1.14:8180/hescharts_server/img/115-1499765115336.png"-->
+                                 <!--alt="screenshot" class="screen_image">-->
+      <!--<div class="mask"><a href="../html/hescEchartForShareEdit.html?id=115" target="_blank"-->
+                           <!--class="edit-wrap">-->
+        <!--<button class="edit">编辑</button>-->
+      <!--</a>-->
+        <!--<div class="delete" onclick="javascript:showDeleteScreenModal(115)"><i-->
+          <!--class="iconfont icon-shanchu"></i></div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="screen-bottom-wrap">-->
+      <!--<div class="color-B2C1D5 screen_bottom"><p>热词分析</p></div>-->
+      <!--<div class="screen-actions-box">-->
+        <!--<div class="screenActions">-->
+          <!--<ul class="clearfix">-->
+            <!--<li onclick="javascript:showCopyScreenModal(115)"><i class="iconfont icon-fuzhi"> </i>-->
+              <!--<span>复制</span></li>-->
+            <!--<li onclick="javascript:window.open('../html/hescEchartForPreView.html?id=115')"><i-->
+              <!--class="iconfont icon-yulan"> </i> <span>预览</span></li>-->
+            <!--<li></li>-->
+          <!--</ul>-->
+        <!--</div>-->
+        <!--<noscript></noscript>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<noscript></noscript>-->
+  <!--</div>-->
+<!--</div>-->
 
-    <!-- 卡片的内容 -->
-    <div class="mdui-card-content"
-         style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
-      子曰：「学而时习之子曰：「学而时习之子曰：「学而时习之子曰：「学而时习之，不亦说乎？有朋自远方来，不亦乐乎？人不知，而不愠，不亦君子乎？」
-    </div>
 
-
-    <!--分割线-->
-    <div class="mdui-divider-dark"></div>
-
-
-    <!-- 卡片的按钮 -->
-    <div class="mdui-card-actions ">
-      <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left">复制大屏</button>
-      <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right">预览大屏</button>
-      <!--<button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">&#xe5cf;</i></button>-->
-    </div>
-
-  </div>
-
-
-</div>
-
-<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-3 mdui-col-lg-3 mdui-col-xl-3 mdui-p-b-1">
+<div class="mdui-col-xs-12 mdui-col-sm-6 mdui-col-md-3 mdui-col-lg-3 mdui-col-xl-3 mdui-p-b-1"   *ngFor="let data of datas;">
 
 
   <div class="mdui-card mdui-hoverable mdui-shadow-3">
+    <!--<app-item [title]="data['title']" [description]="data['description']" [imgUrl]="data.imgUrl" (onCollect1)="collect($event)" [index]="index">-->
+    <!--<header>1111111111</header>-->
+    <!--</app-item>-->
+
+    <app-item  [id]="data.id" [imgUrl]="data.imgUrl" [screenName]="data.screenName" (copyOrEdit)="showModal(data.id,$event)"></app-item>
+
   </div>
+
+  <input type="text" [(ngModel)]="data['title']" name="testSelect" #testSelect="ngModel" pattern="\d*"  [appMyBeautifulBackground]="'yellow'">
+  <!--<p>{{testSelect.valid}}</p>-->
+
 </div>
+<!--<div *appMyNgIf="true">这里是我的ngIf指令</div>-->
+<!--<md-progress-bar-->
+<!--class="example-margin"-->
+<!--[color]="Primary"-->
+<!--[mode]="Determinate"-->
+<!--[value]="30">-->
+<!--</md-progress-bar>-->
+
+

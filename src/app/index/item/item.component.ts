@@ -1,4 +1,8 @@
-import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, DoCheck, EventEmitter, Inject, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {IndexServiceService} from "../service/index-service.service";
+import {IndexModel} from "../model/index-model";
+import {APP_CONFIG} from "../../config/app-config.constants";
+import {IAppConfig} from "../../config/app-config.interface";
 
 @Component({
   selector: 'app-item',
@@ -6,6 +10,7 @@ import {Component, DoCheck, EventEmitter, Input, OnChanges, OnInit, Output, Simp
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit,OnChanges,DoCheck{
+  private imgUrl:string='';
   ngDoCheck(): void {
     // console.log(this);
     // console.log(event)
@@ -13,32 +18,37 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    // console.log(changes);
   }
 
-  title:string="";
-  description:string="";
-  @Input() imgUrl:string="";
-  @Output() onCollect1=new EventEmitter<any>();
-  @Input() index:number;
+  @Input('id') id:number;
+  @Input('screenName') screenName:string;
+  // @Input('imgUrl') imgUrl:string;
+  @Output() copyOrEdit=new EventEmitter<any>();
 
-  constructor() { }
+  @Input('imgUrl')
+  set imgurl(imgUrl:string){
+    // console.log(imgUrl);
+    this.imgUrl=this.app_config.SERVICE_BASE_URL+imgUrl;
+  }
+
+  constructor(private indexService:IndexServiceService,
+            @Inject(APP_CONFIG) private app_config:IAppConfig) { }
 
   ngOnInit() {
-    console.log(this.index);
   }
 
-  @Input('description')
-  set descriptionString(description:string){
-    this.description=description;
-  }
-  @Input('title')
-  set titleString(title:string){
-    this.title=title;
-  }
+
   collect(){
     console.log("看看那");
-    this.onCollect1.emit();
+    // this.onCollect1.emit();
+  }
+
+  copyScreen(){
+    this.copyOrEdit.emit('copy');
+  }
+  previewScreen(){
+    this.copyOrEdit.emit('edit');
   }
 
 
