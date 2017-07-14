@@ -15,6 +15,7 @@ export class HttpTokenInterceptor {
     this.progressbar.start();
     headers.append('Content-Type','application/json');
     headers.append('token',localStorage.getItem('token'));
+    // console.log(localStorage.getItem('token'));
   }
 
   get(url) {
@@ -39,7 +40,9 @@ export class HttpTokenInterceptor {
     return this.http.post(url, data, {
       headers: headers
     }).map(res=>{
+      // console.log(res);
       this.progressbar.done();
+      // console.log(res.json());
      return  res.json()
     });
   }

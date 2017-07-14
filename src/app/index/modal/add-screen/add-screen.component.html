@@ -1,18 +1,21 @@
+
 <h1 md-dialog-title>添加大屏</h1>
 <div md-dialog-content >
 
-  <form class="example-form">
+  <form  #form="ngForm" [formGroup]="formGroup">
     <md-input-container class="example-full-width">
-      <input mdInput placeholder="大屏名称" [formControl]="screenName">
-      <md-error *ngIf="screenName.hasError('required')">
+      <input mdInput  placeholder="大屏名称" formControlName="screenName"  [(ngModel)]="screenNameValue">
+      <md-error *ngIf="formGroup.get('screenName').hasError('required')">
         请输入大屏名称
       </md-error>
+      <md-error *ngIf="screenNameRepeat">大屏名称重复</md-error>
     </md-input-container>
 
 
     <md-input-container class="example-full-width" >
-      <textarea mdInput placeholder="大屏描述" rows="5" [formControl]="screenDescription" ></textarea>
-      <md-error *ngIf="screenDescription.hasError('required')">
+      <textarea mdInput  placeholder="大屏描述"  rows="5" formControlName="screenDescription" #screenDescriptionValue></textarea>
+      <md-hint align="end">{{screenDescriptionValue.value.length}}/50 </md-hint>
+      <md-error *ngIf="formGroup.get('screenDescription').hasError('required')">
         请输入大屏描述
       </md-error>
     </md-input-container>
@@ -24,9 +27,11 @@
   <!--<input name="userName" [(ngModel)]="user.userName" #username="ngModel" type="text" class="form-control" placeholder="用户名">-->
   <!--<span class="glyphicon glyphicon-user form-control-feedback"></span>-->
 <!--</div>-->
-<div md-dialog-actions>
-  <button md-button md-dialog-close="Option 1">Option 1</button>
-  <button md-button md-dialog-close="Option 2">Option 2</button>
+<div md-dialog-actions align="end">
+  <!--<button md-fab md-dialog-close=""><md-icon>check</md-icon></button>-->
+
+  <button md-button style="color:rgba(0,0,0,0.6)" md-dialog-close="cancel">取消</button>
+  <button md-button style="color: #3c8dbc" [disabled]="!form.form.valid" (click)="newScreen()">新建</button>
 </div>
 
 

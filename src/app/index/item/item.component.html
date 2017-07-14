@@ -3,6 +3,12 @@
   <img class="mdui-img-rounded mdui-valign mdui-center"
        src="{{imgUrl}}"/>
 
+  <div class="mask"><a routerLink="../html/hescEchartForShareEdit.html?id=189" target="_blank" class="edit-wrap">
+    <button class="edit">编辑</button>
+  </a>
+    <div class="delete" (click)="editScreen('delete')"><i class="iconfont icon-shanchu"></i></div>
+  </div>
+
 
 </div>
 
@@ -27,8 +33,8 @@
 
 <!-- 卡片的按钮 -->
 <div class="mdui-card-actions ">
-  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left" (click)="copyScreen()">复制大屏</button>
-  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right" (click)="previewScreen()">预览大屏</button>
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-left" (click)="editScreen('copy')">复制大屏</button>
+  <button class="mdui-btn mdui-text-color-theme-accent mdui-ripple mdui-float-right" (click)="editScreen('preview')">预览大屏</button>
   <!--<button class="mdui-btn mdui-btn-icon mdui-float-right"><i class="mdui-icon material-icons">&#xe5cf;</i></button>-->
 </div>
 <!--<ng-content select="header"></ng-content>-->

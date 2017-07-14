@@ -3,6 +3,8 @@ import {IndexServiceService} from "../service/index-service.service";
 import {IndexModel} from "../model/index-model";
 import {APP_CONFIG} from "../../config/app-config.constants";
 import {IAppConfig} from "../../config/app-config.interface";
+import {MdSnackBar, MdDialog} from "@angular/material";
+import {AddScreenComponent} from "../modal/add-screen/add-screen.component";
 
 @Component({
   selector: 'app-item',
@@ -33,7 +35,15 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
   }
 
   constructor(private indexService:IndexServiceService,
-            @Inject(APP_CONFIG) private app_config:IAppConfig) { }
+            @Inject(APP_CONFIG) private app_config:IAppConfig,
+              public dialog: MdDialog,
+              public snackBar: MdSnackBar) { }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
+  }
 
   ngOnInit() {
   }
@@ -44,12 +54,36 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
     // this.onCollect1.emit();
   }
 
-  copyScreen(){
-    this.copyOrEdit.emit('copy');
+  editScreen(fun:string){
+    // this.myModal.open();
+    // console.log(this.id);
+    //四种状态 copy、preivew、add、delete
+    if(fun=='copy'){
+
+    }
+    else if(fun=='preview'){
+      console.log("preview");
+        window.location.href='http://mmcode.top';
+    }
+    else if(fun=='add'){
+      let dialogRef = this.dialog.open(AddScreenComponent,{
+        width: '600px',
+      });
+      dialogRef.afterClosed().subscribe((x)=>{
+        if(x=='success'){
+          this.openSnackBar('大屏添加成功！','');
+        }
+        else{
+          this.openSnackBar('取消创建大屏！','');
+        }
+      })
+    }
+    else if(fun=='delete'){
+
+    }
+
   }
-  previewScreen(){
-    this.copyOrEdit.emit('edit');
-  }
+
 
 
 

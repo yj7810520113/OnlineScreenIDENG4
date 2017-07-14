@@ -12,7 +12,7 @@
       <span class="notice-descript">登录名或登录密码不正确</span>
     </div>
 
-    <form #form="ngForm">
+    <form #form="ngForm" >
       <div class="form-group has-feedback">
         <input name="userName" [(ngModel)]="user.userName" #username="ngModel" type="text" class="form-control" placeholder="用户名">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
