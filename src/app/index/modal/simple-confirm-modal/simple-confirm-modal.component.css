@@ -1,0 +1,6 @@
+snack-bar-container .snackBarConfirm{
+  background-color: #3c8dbc !important;
+}
+snack-bar-container.snackBarCancel{
+  background-color: red !important;
+}

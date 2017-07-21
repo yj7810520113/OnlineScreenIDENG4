@@ -5,6 +5,8 @@ import {APP_CONFIG} from "../../config/app-config.constants";
 import {IAppConfig} from "../../config/app-config.interface";
 import {MdSnackBar, MdDialog} from "@angular/material";
 import {AddScreenComponent} from "../modal/add-screen/add-screen.component";
+import {SimpleConfirmModalComponent} from "../modal/simple-confirm-modal/simple-confirm-modal.component";
+import {SnackBarComponent} from "../snack-bar/snack-bar.component";
 
 @Component({
   selector: 'app-item',
@@ -39,10 +41,10 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
               public dialog: MdDialog,
               public snackBar: MdSnackBar) { }
 
-  openSnackBar(message: string, action: string) {
-    this.snackBar.open(message, action, {
-      duration: 2000,
-    });
+  openSnackBar(message: string, action: string,additionConfigs:any) {
+    // let config:IsimpleConfirmModalConfig;
+    var config=Object.assign({},additionConfigs,{duration:2000});
+    this.snackBar.open(message, action, config);
   }
 
   ngOnInit() {
@@ -58,28 +60,55 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
     // this.myModal.open();
     // console.log(this.id);
     //四种状态 copy、preivew、add、delete
+    console.log(fun);
     if(fun=='copy'){
-
+      let dialogRef=this.dialog.open(SimpleConfirmModalComponent,{
+        width:'400px',
+        data:{
+          title:'复制大屏至我的案例集',
+          content:'是否复制大屏至我的案例集？',
+        },
+      });
+      dialogRef.afterClosed().subscribe((x)=>{
+        if(x=='cancel'){
+          this.openSnackBar('取消复制大屏！','',{
+            extraClasses:['snackBarCancel']
+          });
+        }
+        else if(x=='confirm'){
+          this.openSnackBar('已复制大屏至我的案例集！','',{
+            extraClasses:['snackBarConfirm']
+          });
+        }
+      })
     }
     else if(fun=='preview'){
       console.log("preview");
         window.location.href='http://mmcode.top';
     }
     else if(fun=='add'){
-      let dialogRef = this.dialog.open(AddScreenComponent,{
-        width: '600px',
-      });
-      dialogRef.afterClosed().subscribe((x)=>{
-        if(x=='success'){
-          this.openSnackBar('大屏添加成功！','');
-        }
-        else{
-          this.openSnackBar('取消创建大屏！','');
-        }
-      })
+
     }
     else if(fun=='delete'){
-
+      let dialogRef=this.dialog.open(SimpleConfirmModalComponent,{
+        width:'400px',
+        data:{
+          title:'删除该大屏',
+          content:'是否删除该大屏？',
+        },
+      });
+      dialogRef.afterClosed().subscribe((x)=>{
+        if(x=='cancel'){
+          this.openSnackBar('取消删除大屏！','',{
+            extraClasses:['snackBarCancel']
+          });
+        }
+        else if(x=='confirm'){
+          this.openSnackBar('成功删除大屏！','',{
+            extraClasses:['snackBarConfirm']
+          });
+        }
+      })
     }
 
   }
@@ -88,3 +117,7 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
 
 
 }
+interface IsimpleConfirmModalConfig{
+  [key:string]:any;
+}
+

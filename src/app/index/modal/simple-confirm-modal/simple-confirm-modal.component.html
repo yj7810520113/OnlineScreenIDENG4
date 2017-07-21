@@ -1,0 +1,18 @@
+
+<h1 md-dialog-title>{{modalTitle}}</h1>
+<div md-dialog-content >
+
+{{modalContent}}
+</div>
+<!--<div class="form-group has-feedback">-->
+<!--<input name="userName" [(ngModel)]="user.userName" #username="ngModel" type="text" class="form-control" placeholder="用户名">-->
+<!--<span class="glyphicon glyphicon-user form-control-feedback"></span>-->
+<!--</div>-->
+<div md-dialog-actions align="end">
+  <!--<button md-fab md-dialog-close=""><md-icon>check</md-icon></button>-->
+
+  <button md-button style="color:rgba(0,0,0,0.6)" md-dialog-close="cancel">取消</button>
+  <button md-button style="color: #3c8dbc"  md-dialog-close="confirm">确定</button>
+</div>
+
+

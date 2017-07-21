@@ -6,7 +6,7 @@ import {indexRoutes} from "./index.routes";
 import { AllVisualScreenComponent } from './all-visual-screen/all-visual-screen.component';
 import { ItemComponent } from './item/item.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MdDialogModule, MdButtonModule, MdInputModule} from '@angular/material';
+import {MdDialogModule, MdButtonModule, MdInputModule, MdSnackBarModule} from '@angular/material';
 
 
 import { MyBeautifulBackgroundDirective } from './my-beautiful-background.directive';
@@ -18,6 +18,8 @@ import {IndexServiceService} from "./service/index-service.service";
 import { AddScreenComponent } from './modal/add-screen/add-screen.component';
 import {ModalModule} from "ngx-modal";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { SimpleConfirmModalComponent } from './modal/simple-confirm-modal/simple-confirm-modal.component';
+import { SnackBarComponent } from './snack-bar/snack-bar.component';
 
 
 
@@ -32,6 +34,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MdButtonModule,
     ModalModule,
     MdInputModule,
+    MdSnackBarModule,
 
   ],
   declarations: [
@@ -41,13 +44,17 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MyBeautifulBackgroundDirective,
     MyNgIfDirective,
     AddScreenComponent,
+    SimpleConfirmModalComponent,
+    SnackBarComponent,
     // HeaderNavComponent,
   ],
   providers:[
     IndexServiceService,
   ],
   entryComponents:[
-    AddScreenComponent
+    AddScreenComponent,
+    SimpleConfirmModalComponent,
+    SnackBarComponent,
   ],
   bootstrap: []
 
