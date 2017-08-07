@@ -32,7 +32,9 @@ import {ItemComponent} from "./index/item/item.component";
 import {MyBeautifulBackgroundDirective} from "./index/my-beautiful-background.directive";
 import {MyNgIfDirective} from "./index/my-ng-if.directive";
 import {ModalModule} from "ngx-modal";
+import { TestComponent } from './d3/test/test.component';
 // import { NgProgressModule } from 'ng2-progressbar';
+import {D3Service} from 'd3-ng2-service'
 
 
 
@@ -41,6 +43,7 @@ import {ModalModule} from "ngx-modal";
     AppComponent,
     LoginComponent,
     HeaderNavComponent,
+    TestComponent,
     // MyVisualScreenComponent,
     // AllVisualScreenComponent,
     // ItemComponent,
@@ -94,6 +97,7 @@ import {ModalModule} from "ngx-modal";
 
   ],
   providers: [
+    D3Service,
     HttpTokenInterceptor,
     LoginServiceService,
     {

@@ -5,6 +5,7 @@
   import {HeaderNavComponent} from "./index/header-nav/header-nav.component";
   import {MyVisualScreenComponent} from "./index/my-visual-screen/my-visual-screen.component";
   import {AllVisualScreenComponent} from "./index/all-visual-screen/all-visual-screen.component";
+  import {TestComponent} from "./d3/test/test.component";
 
   export const appRoutes = [
     // {
@@ -20,6 +21,7 @@
     //   path: 'home',
     //   loadChildren: './home/home.module#HomeModule'
     // },
+
     {
       path:'index',
       component:HeaderNavComponent,
@@ -38,7 +40,8 @@
         {
           path:'',
           loadChildren:'./index/index.module#IndexModule',
-        }
+        },
+
       ],
     },
     // {
@@ -51,7 +54,11 @@
     //   pathMatch:'full',
     // },
     {
+      path:'d3',
+      component:TestComponent,
+    },
+    {
       path:'login',
-      component:LoginComponent,
+      component:TestComponent,
     },
   ];

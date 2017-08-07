@@ -104,6 +104,7 @@ export class ItemComponent implements OnInit,OnChanges,DoCheck{
           });
         }
         else if(x=='confirm'){
+          this.indexService.deleteScreenConfig('/screen/find/config?id='+this.id);
           this.openSnackBar('成功删除大屏！','',{
             extraClasses:['snackBarConfirm']
           });

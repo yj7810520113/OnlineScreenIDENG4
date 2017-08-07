@@ -16,4 +16,12 @@ export class IndexServiceService {
       return x;
     });
   }
+  deleteScreenConfig(url:string){
+    console.log("我执行了111");
+    console.log(url);
+    return this.http.get(url).map((x)=>{
+      console.log(x);
+      // x['imgUrl']=this.app_Config.SERVICE_BASE_URL+x['imgUrl'];
+      return x;
+    });  }
 }
